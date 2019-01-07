@@ -1,0 +1,22 @@
+version: "3"
+services:
+  react_base_webpack:
+    image: react_base_webpack
+    labels:
+      traefik.frontend.rule: "HostRegexp:dev.esprit{shop:(shop)?}.{tld:.*};PathPrefixStrip:/react_base_webpack/"
+      traefik.frontend.priority: "3"
+      traefik.port: "3004"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+networks:
+  default:
+    external:
+      name: dev_vm
