@@ -1,10 +1,9 @@
-import './style.css'
+import './main.scss'
 
 function component() {
     let element = document.createElement('div');
 
-    element.innerHTML = "<b>Hallo Welt!</b>";
-    element.classList.add('hello');
+    element.innerHTML = "<p>Hallo Welt!</p>";
 
     return element;
 }
