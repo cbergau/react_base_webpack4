@@ -4,8 +4,8 @@ const server = express();
 
 const buildDir = path.join(__dirname, 'dist');
 
-server.get('/main.js', (request, response) => {
-    response.sendFile(buildDir + '/main.js');
+server.get('/main.bundle.js', (request, response) => {
+    response.sendFile(buildDir + '/main.bundle.js');
 });
 
 server.get('/*', (request, response) => {
