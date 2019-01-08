@@ -3,6 +3,11 @@ const path = require('path');
 const server = express();
 
 const buildDir = path.join(__dirname, 'dist');
+const dataDir = path.join(__dirname, 'src/data');
+
+server.get('/orders.json', (request, response) => {
+    response.sendFile(dataDir + '/orders.json');
+});
 
 server.get('/main.bundle.js', (request, response) => {
     response.sendFile(buildDir + '/main.bundle.js');
