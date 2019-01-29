@@ -24,7 +24,7 @@ let enhancers = composeEnhancers(
 
 const store = createStore(reducers, enhancers);
 
-const render = Component => {
+let render = Component => {
     ReactDOM.render(
         <Provider store={store}>
             <App/>
@@ -37,3 +37,10 @@ registerServiceWorker();
 
 // Render once
 render(App);
+
+// Webpack Hot Module Replacement API
+if (module.hot) {
+    module.hot.accept('./components/App.jsx', () => {
+        render(App);
+    });
+}
