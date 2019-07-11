@@ -26,12 +26,19 @@ server.get('/main.bundle.js', (request, response) => {
     response.sendFile(buildDir + '/main.bundle.js');
 });
 
-server.get('/*', (request, response) => {
-    response.sendFile(buildDir + '/index.html', {
-        headers: {
-            'X-ESI': 1
-        }
-    });
+server.get('/', (request, response) => {
+    response.setHeader("X-ESI", 1);
+    response.send('<html>' +
+        '<head>' +
+        '<title>Hi</title>' +
+        '</head>' +
+        '<body>' +
+        '<h1>Application</h1>' +
+        '<div id="root">' +
+        '</div>' +
+        '<script src="bundle.js"></script>' +
+        '</body>' +
+        '</html>');
 });
 
 server.listen(3004, () => {
